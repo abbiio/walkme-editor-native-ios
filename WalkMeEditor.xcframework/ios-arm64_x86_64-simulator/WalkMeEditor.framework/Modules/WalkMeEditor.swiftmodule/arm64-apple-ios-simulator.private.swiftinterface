@@ -1,0 +1,1107 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2.4 effective-5.10 (swiftlang-6.2.4.1.4 clang-1700.6.4.2)
+// swift-module-flags: -target arm64-apple-ios14.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name WalkMeEditor
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.4
+import Combine
+import CoreGraphics
+import DeveloperToolsSupport
+import Foundation
+import ImageIO
+import Lottie
+import Network
+import ObjectiveC
+import Swift
+import SwiftUI
+import UIKit
+import UserNotifications
+@_exported import WalkMeEditor
+import WebKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+import os
+@objc public enum WMPMEditStepCaptureAction : Swift.Int {
+  case recapture = 0
+  case before = 1
+  case after = 2
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.Int)
+  #endif
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public struct WMSegmentationOptions : Swift.OptionSet {
+  public let rawValue: Swift.UInt
+  public init(rawValue: Swift.UInt)
+  public static let na: WalkMeEditor.WMSegmentationOptions
+  public static let elementVisibility: WalkMeEditor.WMSegmentationOptions
+  public static let elementInteraction: WalkMeEditor.WMSegmentationOptions
+  public typealias ArrayLiteralElement = WalkMeEditor.WMSegmentationOptions
+  public typealias Element = WalkMeEditor.WMSegmentationOptions
+  public typealias RawValue = Swift.UInt
+}
+public protocol WMElementStateManaging : AnyObject {
+  func start()
+  func stop()
+  func trackElement(_ element: WalkMeEditor.WMBaseElementObject, forKey key: Swift.String, segmentation: WalkMeEditor.WMSegmentationOptions)
+  func untrackElement(forKey key: Swift.String)
+  func isElementVisible(_ elementKey: Swift.String) -> Swift.Bool
+  func isElementExists(_ elementKey: Swift.String) -> Swift.Bool
+  func wasElementSeen(_ elementKey: Swift.String) -> Swift.Bool
+  func wasElementInteracted(_ elementKey: Swift.String) -> Swift.Bool
+  func isElementInteracted(_ elementKey: Swift.String) -> Swift.Bool
+  func checkIfElementIsInteractedAndReset(_ elementKey: Swift.String) -> Swift.Bool
+}
+@objc public protocol WMViewControllerInterceptorDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func viewWillDisappearOn(_ vc: UIKit.UIViewController, animated: Swift.Bool)
+  @objc func viewDidAppearOn(_ vc: UIKit.UIViewController, animated: Swift.Bool)
+  @objc func viewDidDisappearOn(_ vc: UIKit.UIViewController, animated: Swift.Bool)
+}
+@objc public class WMViewControllerInterceptor : ObjectiveC.NSObject {
+  @objc weak public var delegate: (any WalkMeEditor.WMViewControllerInterceptorDelegate)?
+  @objc public init(delegate: any WalkMeEditor.WMViewControllerInterceptorDelegate)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc public class WMPMLoginState : WalkMeEditor.WMPMState {
+  @objc override dynamic public func enter()
+  @objc override dynamic public func exit()
+  @objc deinit
+}
+extension WalkMeEditor.WMBusinessSolutionObject {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc dynamic public func swtConnectedPromotionIds() -> [Swift.String]?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc dynamic public func swtConnectedPromoTypes(fromPromos promotions: [WalkMeEditor.WMBasicPromotionObject]?) -> [Swift.String : Swift.String]
+  #endif
+}
+@_inheritsConvenienceInitializers @objc final public class WMDeployableHelper : ObjectiveC.NSObject {
+  @objc public static func name(for type: WalkMeEditor.WMDeployableType) -> Swift.String
+  @objc public static func nameFor(rawValue: Swift.Int) -> Swift.String
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public enum WMDeployableType : Swift.Int {
+  case launcher = 2
+  case shoutout = 14
+  case swt = 19
+  case survey = 4
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.Int)
+  #endif
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc final public class WMEditorManager : WalkMeEditor.WMBaseSDKManager {
+  @objc public static let shared: WalkMeEditor.WMEditorManager
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc override final public var stateMachine: WalkMeEditor.WMStateMachineBase! {
+    @objc get
+    @objc set
+  }
+  #endif
+  @objc final public var editorStateMachine: WalkMeEditor.WMEditorStateMachine {
+    @objc get
+    @objc set
+  }
+  @objc deinit
+}
+extension WalkMeEditor.WMEditorManager : WalkMeEditor.WalkMeiOSSDK {
+  @objc override final public func makeActiveState(guid: Swift.String) -> WalkMeEditor.WMStateBase
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc override final public func applyStartOptions(_ options: WalkMeEditor.WalkMeStartOptions?)
+  #endif
+  @objc override final public func stop()
+  @objc override final public func applyAdditionalInitialization()
+}
+@_hasMissingDesignatedInitializers final public class WMAssetsManager {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func getImage(_ urlString: Swift.String?, completion: @escaping (UIKit.UIImage?) -> Swift.Void)
+  #endif
+  @objc deinit
+}
+@objc public protocol WMHybridAppScreenHandlerDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func didChangeHybridAppScreen()
+}
+@objc public protocol WMScreenHandlerDelegate : ObjectiveC.NSObjectProtocol {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc optional var hybridScreenHandlerDelegate: (any WalkMeEditor.WMHybridAppScreenHandlerDelegate)? { get set }
+  #endif
+}
+@objc final public class WMScreenTracker : ObjectiveC.NSObject {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public init(hybridScreenHandler: (any WalkMeEditor.WMScreenHandlerDelegate)?)
+  #endif
+  @objc deinit
+  @objc public static func screenID() -> Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public static func availableScreenID() -> Swift.String?
+  #endif
+  @objc public static func fromScreenID() -> Swift.String
+  @objc public static func screenFriendlyName() -> Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public static func setUserScreenID(_ screenID: Swift.String?)
+  #endif
+}
+extension WalkMeEditor.WMScreenTracker : WalkMeEditor.WMViewControllerInterceptorDelegate {
+  @objc final public func viewWillDisappearOn(_ vc: UIKit.UIViewController, animated: Swift.Bool)
+  @objc final public func viewDidAppearOn(_ vc: UIKit.UIViewController, animated: Swift.Bool)
+  @objc final public func viewDidDisappearOn(_ vc: UIKit.UIViewController, animated: Swift.Bool)
+}
+extension WalkMeEditor.WMScreenTracker : WalkMeEditor.WMHybridAppScreenHandlerDelegate {
+  @objc final public func didChangeHybridAppScreen()
+}
+@_inheritsConvenienceInitializers @objc @_Concurrency.MainActor @preconcurrency final public class WMPMCaptureActionBarHostView : UIKit.UIView {
+  @objc @_Concurrency.MainActor @preconcurrency weak final public var delegate: (any WalkMeEditor.WMPMDynamicAccessoryButtonViewDelegate)?
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, unavailable)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
+  @objc @_Concurrency.MainActor @preconcurrency final public func configure(captureMode: WalkMeEditor.WMPMCaptureMode, showCancel: Swift.Bool, showApprove: Swift.Bool, showRegionButtons: Swift.Bool, canExpand: Swift.Bool, canNarrow: Swift.Bool, isSWT: Swift.Bool = false, showDoneSWT: Swift.Bool = false)
+  @objc @_Concurrency.MainActor @preconcurrency final public func updatePositionForMarkerFrame(_ markerFrame: CoreFoundation.CGRect)
+  @objc @_Concurrency.MainActor @preconcurrency final public func hideForMarkerDrag()
+  @objc @_Concurrency.MainActor @preconcurrency final public func showAfterMarkerDrag()
+  @objc deinit
+}
+
+
+
+
+@objc public enum WMPMCaptureMode : Swift.Int {
+  case navigate
+  case preciseCapture
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.Int)
+  #endif
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+@_inheritsConvenienceInitializers @objc @_Concurrency.MainActor @preconcurrency final public class WMPMCaptureSWTWidgetHostView : UIKit.UIView {
+  @objc @_Concurrency.MainActor @preconcurrency final public var onContinueOnCurrentScreen: (() -> Swift.Void)?
+  @objc @_Concurrency.MainActor @preconcurrency final public var onDone: (() -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, unavailable)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
+  @objc @_Concurrency.MainActor @preconcurrency final public func updatePositionRelativeTo(_ elementFrame: CoreFoundation.CGRect)
+  @objc deinit
+}
+
+
+@_inheritsConvenienceInitializers @objc(SwiftUIElementHandler) final public class SwiftUIElementHandler : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc deinit
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@objc @_inheritsConvenienceInitializers @objcMembers final public class WMAppVerConditionNodeExecuter : WalkMeEditor.WMConditionNodeExecuter {
+  @objc override final public func eval() -> Swift.Bool
+  @objc override dynamic public init(conditionNode: WalkMeEditor.WMConditionNode)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers final public class WMDeviceTypeConditionNodeExecuter : WalkMeEditor.WMConditionNodeExecuter {
+  @objc override final public func eval() -> Swift.Bool
+  @objc override dynamic public init(conditionNode: WalkMeEditor.WMConditionNode)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @objcMembers final public class WMElementClickConditionNodeExecuter : WalkMeEditor.WMConditionNodeExecuter, WalkMeEditor.WMTouchEventsInspectorDelegate {
+  @objc override dynamic public init(conditionNode: WalkMeEditor.WMConditionNode)
+  @objc deinit
+  @objc override final public func eval() -> Swift.Bool
+  @objc override final public func asyncEval(_ completion: @escaping (Swift.Bool) -> Swift.Void)
+  @objc final public func touch(_ touchInspector: WalkMeEditor.WMTouchEventsInspector, didTouch view: UIKit.UIView, pointInView: CoreFoundation.CGPoint, pointInWindow: CoreFoundation.CGPoint, touchType: WalkMeEditor.WMTouchEventTypeOption)
+}
+@objc @_inheritsConvenienceInitializers @objcMembers final public class WMElementConditionNodeExecuter : WalkMeEditor.WMConditionNodeExecuter {
+  @objc override final public func eval() -> Swift.Bool
+  @objc override final public func asyncEval(_ completion: @escaping (Swift.Bool) -> Swift.Void)
+  @objc override dynamic public init(conditionNode: WalkMeEditor.WMConditionNode)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers final public class WMNetworkConditionNodeExecuter : WalkMeEditor.WMConditionNodeExecuter {
+  @objc override final public func eval() -> Swift.Bool
+  @objc override dynamic public init(conditionNode: WalkMeEditor.WMConditionNode)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers final public class WMNumberOfSessionsConditionNodeExecuter : WalkMeEditor.WMConditionNodeExecuter {
+  @objc override final public func eval() -> Swift.Bool
+  @objc override dynamic public init(conditionNode: WalkMeEditor.WMConditionNode)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers final public class WMOSVerConditionNodeExecuter : WalkMeEditor.WMConditionNodeExecuter {
+  @objc override final public func eval() -> Swift.Bool
+  @objc override dynamic public init(conditionNode: WalkMeEditor.WMConditionNode)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers final public class WMPermissionConditionNodeExecuter : WalkMeEditor.WMConditionNodeExecuter {
+  @objc override final public func eval() -> Swift.Bool
+  @objc override dynamic public init(conditionNode: WalkMeEditor.WMConditionNode)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers final public class WMSessionTimeConditionNodeExecuter : WalkMeEditor.WMConditionNodeExecuter {
+  @objc override final public func eval() -> Swift.Bool
+  @objc override dynamic public init(conditionNode: WalkMeEditor.WMConditionNode)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers final public class WMUserIdConditionNodeExecuter : WalkMeEditor.WMConditionNodeExecuter {
+  @objc override final public func eval() -> Swift.Bool
+  @objc override dynamic public init(conditionNode: WalkMeEditor.WMConditionNode)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @objcMembers final public class WMUnifiedPromotionPlayer : ObjectiveC.NSObject {
+  @objc weak final public var actionDelegate: (any WalkMeEditor.WMPlayerDelegate)?
+  @objc final public var onStop: (() -> Swift.Void)?
+  @objc final public var lastDismissType: WalkMeEditor.WMSODismissType {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc final public var shoutOutPlayingItem: WalkMeEditor.WMShoutOutPlayingItem? {
+    @objc get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc final public var promotion: WalkMeEditor.WMBasicPromotionObject? {
+    @objc get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public static func forFlow(_ bs: WalkMeEditor.WMBusinessSolutionObject, startingNodeId: Foundation.NSNumber?, storageManager: any WalkMeEditor.WMStorageManagerProtocol, dataSource: @escaping (Swift.Int) -> WalkMeEditor.WMBasicPromotionObject?) -> WalkMeEditor.WMUnifiedPromotionPlayer
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public static func forShoutOut(_ soPlayingItem: WalkMeEditor.WMShoutOutPlayingItem, storageManager: any WalkMeEditor.WMStorageManagerProtocol, dataSource: @escaping (Swift.Int) -> WalkMeEditor.WMBasicPromotionObject?) -> WalkMeEditor.WMUnifiedPromotionPlayer
+  #endif
+  @objc final public func play()
+  @objc final public func stop()
+  @objc deinit
+}
+extension WalkMeEditor.WMUnifiedPromotionPlayer : WalkMeEditor.WMFlowPlayerDelgate {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc final public func onConnectToFlow(_ flowId: Foundation.NSNumber) -> WalkMeEditor.WMFlowObject?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc final public func onConnectToShoutOut(_ shoutOutId: Foundation.NSNumber) -> WalkMeEditor.WMShoutOutObject?
+  #endif
+  @objc final public func flowPlayerOnWTCancelled(_ flowPlayer: WalkMeEditor.WMFlowPlayer)
+  @objc final public func flowPlayer(_ flowPlayer: WalkMeEditor.WMFlowPlayer, onWTDone flow: WalkMeEditor.WMFlowObject)
+  @objc final public func flowPlayer(_ flowPlayer: WalkMeEditor.WMFlowPlayer, willPlayConnectedDeployable flow: WalkMeEditor.WMBasicPromotionObject)
+  @objc final public func flowPlayer(_ flowPlayer: WalkMeEditor.WMFlowPlayer, didConnectToShoutOut shoutOut: WalkMeEditor.WMShoutOutObject)
+  @objc final public func onMoveToStep(_ stepData: [Swift.AnyHashable : Any])
+  @objc final public func onStepDone(_ stepData: [Swift.AnyHashable : Any])
+}
+extension WalkMeEditor.WMUnifiedPromotionPlayer : WalkMeEditor.WMShoutOutPlayerDelegate {
+  @objc final public func didFinishPlayingShoutOut(_ player: WalkMeEditor.WMShoutOutPlayer, dismissType: WalkMeEditor.WMSODismissType)
+  @objc final public func shouldDismiss(shoutOut player: WalkMeEditor.WMShoutOutPlayer)
+}
+@objc @_inheritsConvenienceInitializers @objcMembers final public class WMStepTriggerHandlerFactory : ObjectiveC.NSObject {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public static func handlers(forElement element: any WalkMeEditor.WMFEResultInterface, delegate: Any) -> [any WalkMeEditor.WMStepTriggerHandlerInterface]?
+  #endif
+  @objc override dynamic public init()
+  @objc deinit
+}
+
+
+@objc public protocol WMPMPreciseCaptureViewDelegate {
+  @objc optional func preciseCaptureViewDidMove(_ preciseCaptureView: WalkMeEditor.WMPMPreciseCaptureView)
+  @objc optional func preciseCaptureViewDidEndEditing(_ preciseCaptureView: WalkMeEditor.WMPMPreciseCaptureView)
+}
+@_inheritsConvenienceInitializers @objc @_Concurrency.MainActor @preconcurrency final public class WMPMPreciseCaptureView : UIKit.UIView {
+  @objc @_Concurrency.MainActor @preconcurrency weak final public var delegate: (any WalkMeEditor.WMPMPreciseCaptureViewDelegate)?
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
+  @objc @_Concurrency.MainActor @preconcurrency final public func moveMarkerToPoint(_ point: CoreFoundation.CGPoint)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc override final public func touchesBegan(_ touches: Swift.Set<UIKit.UITouch>, with event: UIKit.UIEvent?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc override final public func touchesMoved(_ touches: Swift.Set<UIKit.UITouch>, with event: UIKit.UIEvent?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc override final public func touchesEnded(_ touches: Swift.Set<UIKit.UITouch>, with event: UIKit.UIEvent?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc override final public func touchesCancelled(_ touches: Swift.Set<UIKit.UITouch>, with event: UIKit.UIEvent?)
+  #endif
+  @objc deinit
+}
+
+
+
+
+
+
+
+
+@_inheritsConvenienceInitializers @objc @_Concurrency.MainActor @preconcurrency final public class WMCapturedElementBorderView : UIKit.UIView {
+  @objc @_Concurrency.MainActor @preconcurrency final public var anchorFrame: CoreFoundation.CGRect
+  @objc @_Concurrency.MainActor @preconcurrency final public func setStyle(cornerRadius: Swift.Double = 0.0, borderWidth: Swift.Double = 0.0, borderColor: UIKit.UIColor)
+  @objc @_Concurrency.MainActor @preconcurrency final public func updateDrawing()
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc override final public func hitTest(_ point: CoreFoundation.CGPoint, with event: UIKit.UIEvent?) -> UIKit.UIView?
+  #endif
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
+  @objc deinit
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc @_Concurrency.MainActor @preconcurrency final public class WMPMDimmingHighlightView : UIKit.UIView {
+  @objc @_Concurrency.MainActor @preconcurrency final public var isDimmingVisible: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @objc @_Concurrency.MainActor @preconcurrency final public func update(elementFrame: CoreFoundation.CGRect, containerBounds: CoreFoundation.CGRect)
+  @objc @_Concurrency.MainActor @preconcurrency final public func setHighlightStyle(cornerRadius: Swift.Double, borderWidth: Swift.Double, borderColor: UIKit.UIColor)
+  @objc @_Concurrency.MainActor @preconcurrency final public func remove()
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc override final public func hitTest(_ point: CoreFoundation.CGPoint, with event: UIKit.UIEvent?) -> UIKit.UIView?
+  #endif
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class WMPMMinimizedPanelHostView : UIKit.UIView {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @objc deinit
+}
+extension WalkMeEditor.WMPMMinimizedPanelHostView {
+  @objc @_Concurrency.MainActor @preconcurrency final public func configureMenuDisplayMode()
+  @objc @_Concurrency.MainActor @preconcurrency final public func positionDockedTrailing(in container: UIKit.UIView, topOffset: CoreFoundation.CGFloat)
+  @objc @_Concurrency.MainActor @preconcurrency final public func redock(in container: UIKit.UIView)
+  @objc @_Concurrency.MainActor @preconcurrency final public func setOnTap(_ handler: @escaping () -> Swift.Void)
+}
+
+
+
+
+
+
+
+
+@_inheritsConvenienceInitializers @objc final public class WMMethodSwizzler : ObjectiveC.NSObject {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public static func replaceMethod(_ aMethod: ObjectiveC.Selector, inClass origClass: Swift.AnyClass, withMethod updatedMethod: ObjectiveC.Selector, inClass inspectorClass: Swift.AnyClass) -> ObjectiveC.IMP?
+  #endif
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public enum WMEventSendingMode : Swift.UInt {
+  case immediately = 0
+  case aggregate = 1
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.UInt)
+  #endif
+  public typealias RawValue = Swift.UInt
+  public var rawValue: Swift.UInt {
+    get
+  }
+}
+@objc public enum WMEventWtStepType : Swift.UInt {
+  case normal = 0
+  case popup = 1
+  case action = 2
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.UInt)
+  #endif
+  public typealias RawValue = Swift.UInt
+  public var rawValue: Swift.UInt {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc final public class WMEventManager : ObjectiveC.NSObject {
+  @objc final public var mode: WalkMeEditor.WMEventSendingMode {
+    get
+  }
+  @objc public static let shared: WalkMeEditor.WMEventManager
+  @objc final public var sessionID: Swift.String {
+    @objc get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc final public var currentSession: WalkMeEditor.WMEventSession? {
+    @objc get
+  }
+  #endif
+  @objc final public func setEventManagerMode(_ mode: WalkMeEditor.WMEventSendingMode)
+  @objc final public func stop()
+  @objc final public func shouldSendEvent() -> Swift.Bool
+  @objc deinit
+}
+extension WalkMeEditor.WMEventManager : WalkMeEditor.WMEventManagerProtocol {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc final public func setEventUrl(_ url: Swift.String?)
+  #endif
+  @objc final public func nullifySession()
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc(sendEvent:forApp:with:pinitType:pinitAppType:pinitID:triggeredApp:triggeredObjID:reason:) final public func sendEvent(_ eventType: WalkMeEditor.WMEventType, for appType: WalkMeEditor.WMEventAppType, with promotionObj: WalkMeEditor.WMBasicPromotionObject?, pinitType: WalkMeEditor.WMPlayInitiatorType, pinitAppType: Swift.String?, pinitID: Any?, triggeredApp: WalkMeEditor.WMEventAppType, triggeredObjID: Foundation.NSNumber?, reason: WalkMeEditor.WMEventCloseReason)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc(sendWtEvent:with:firstNodeId:pinitType:pinitAppType:pinitID:flowPlayID:) final public func sendWtEvent(_ eventType: WalkMeEditor.WMEventType, with promotionObj: WalkMeEditor.WMBasicPromotionObject?, firstNodeId: Foundation.NSNumber?, pinitType: WalkMeEditor.WMPlayInitiatorType, pinitAppType: Swift.String?, pinitID: Any?, flowPlayID: Swift.String?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc(sendEventForWtrStep:flow:status:value:flowPlayID:) final public func sendEventForWtrStep(_ step: WalkMeEditor.WMFlowNodeObject?, flow: WalkMeEditor.WMFlowObject?, status: WalkMeEditor.WMEventWtStepStatus, value: Swift.String?, flowPlayID: Swift.String?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc(sendWalkmeEvent:value:) final public func sendWalkmeEvent(_ eventType: WalkMeEditor.WMEventType, value: Swift.String?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc(sendEvent:forApp:withName:objID:value:initiatorData:) final public func sendEvent(_ eventType: WalkMeEditor.WMEventType, for appType: WalkMeEditor.WMEventAppType, withName name: Swift.String?, objID: Foundation.NSNumber?, value: Swift.String?, initiatorData: WalkMeEditor.WMEventPlayInitiatorData?)
+  #endif
+  @objc final public func sendEvent(_ event: WalkMeEditor.WMEventObject)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc(sendEventWithData:wmData:type:) final public func sendEventWithData(_ eventData: WalkMeEditor.WMEventData, wmData: WalkMeEditor.WMEventWalkmeData?, type eventType: Swift.String?)
+  #endif
+  @objc(sendEvent:session:guid:) final public func sendEvent(_ eventType: WalkMeEditor.WMEventType, session: WalkMeEditor.WMEventSession, guid: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc(createEvent:forApp:name:ID:) final public func createEvent(_ eventType: WalkMeEditor.WMEventType, for appType: WalkMeEditor.WMEventAppType, name: Swift.String?, id: Foundation.NSNumber?) -> WalkMeEditor.WMEventObject
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc(setLauncherEvent:with:triggeredApp:triggeredObjID:) final public func setLauncherEvent(_ event: WalkMeEditor.WMEventObject, with promotionObj: WalkMeEditor.WMBasicPromotionObject?, triggeredApp: WalkMeEditor.WMEventAppType, triggeredObjID: Foundation.NSNumber?)
+  #endif
+}
+@objc public protocol WMEventManagerProtocol {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc func setEventUrl(_ url: Swift.String?)
+  #endif
+  @objc func nullifySession()
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc(sendEvent:forApp:with:pinitType:pinitAppType:pinitID:triggeredApp:triggeredObjID:reason:) func sendEvent(_ eventType: WalkMeEditor.WMEventType, for appType: WalkMeEditor.WMEventAppType, with promotionObj: WalkMeEditor.WMBasicPromotionObject?, pinitType: WalkMeEditor.WMPlayInitiatorType, pinitAppType: Swift.String?, pinitID: Any?, triggeredApp: WalkMeEditor.WMEventAppType, triggeredObjID: Foundation.NSNumber?, reason: WalkMeEditor.WMEventCloseReason)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc(sendWtEvent:with:firstNodeId:pinitType:pinitAppType:pinitID:flowPlayID:) func sendWtEvent(_ eventType: WalkMeEditor.WMEventType, with promotionObj: WalkMeEditor.WMBasicPromotionObject?, firstNodeId: Foundation.NSNumber?, pinitType: WalkMeEditor.WMPlayInitiatorType, pinitAppType: Swift.String?, pinitID: Any?, flowPlayID: Swift.String?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc(sendEventForWtrStep:flow:status:value:flowPlayID:) func sendEventForWtrStep(_ step: WalkMeEditor.WMFlowNodeObject?, flow: WalkMeEditor.WMFlowObject?, status: WalkMeEditor.WMEventWtStepStatus, value: Swift.String?, flowPlayID: Swift.String?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc(sendWalkmeEvent:value:) func sendWalkmeEvent(_ eventType: WalkMeEditor.WMEventType, value: Swift.String?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc(sendEvent:forApp:withName:objID:value:initiatorData:) func sendEvent(_ eventType: WalkMeEditor.WMEventType, for appType: WalkMeEditor.WMEventAppType, withName name: Swift.String?, objID: Foundation.NSNumber?, value: Swift.String?, initiatorData: WalkMeEditor.WMEventPlayInitiatorData?)
+  #endif
+  @objc func sendEvent(_ event: WalkMeEditor.WMEventObject)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc(sendEventWithData:wmData:type:) func sendEventWithData(_ eventData: WalkMeEditor.WMEventData, wmData: WalkMeEditor.WMEventWalkmeData?, type eventType: Swift.String?)
+  #endif
+  @objc(sendEvent:session:guid:) func sendEvent(_ eventType: WalkMeEditor.WMEventType, session: WalkMeEditor.WMEventSession, guid: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc var currentSession: WalkMeEditor.WMEventSession? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc(createEvent:forApp:name:ID:) func createEvent(_ eventType: WalkMeEditor.WMEventType, for appType: WalkMeEditor.WMEventAppType, name: Swift.String?, id: Foundation.NSNumber?) -> WalkMeEditor.WMEventObject
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc(setLauncherEvent:with:triggeredApp:triggeredObjID:) func setLauncherEvent(_ event: WalkMeEditor.WMEventObject, with promotionObj: WalkMeEditor.WMBasicPromotionObject?, triggeredApp: WalkMeEditor.WMEventAppType, triggeredObjID: Foundation.NSNumber?)
+  #endif
+}
+@_inheritsConvenienceInitializers @objc final public class WMPMUtils : ObjectiveC.NSObject {
+  @objc public static let powerModeContextKey: Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public static func presentAlertController(_ alertController: UIKit.UIAlertController, withSourceView sourceView: UIKit.UIView?)
+  #endif
+  @objc override dynamic public init()
+  @objc deinit
+}
+public struct WMScreenshot {
+}
+@objc @objcMembers final public class WMAppVersionConditionNode : WalkMeEditor.WMConditionNode {
+  @objc final public var funcName: Swift.String {
+    get
+  }
+  @objc final public var appVersion: Swift.String {
+    get
+  }
+  @objc override final public func jsonMap() -> [Swift.AnyHashable : Any]
+  @objc required dynamic public init(serializableObject object: [Swift.AnyHashable : Any], version: CoreFoundation.CGFloat)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc override final public func copy(with zone: ObjectiveC.NSZone? = nil) -> Any
+  #endif
+  @objc override final public class func canSupportAction(_ actionName: Swift.String) -> Swift.Bool
+  @objc deinit
+}
+@objc @objcMembers final public class WMDeviceTypeConditionNode : WalkMeEditor.WMConditionNode {
+  @objc final public var funcName: Swift.String {
+    get
+  }
+  @objc final public var deviceType: Swift.String {
+    get
+  }
+  @objc override final public func jsonMap() -> [Swift.AnyHashable : Any]
+  @objc required dynamic public init(serializableObject object: [Swift.AnyHashable : Any], version: CoreFoundation.CGFloat)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc override final public func copy(with zone: ObjectiveC.NSZone? = nil) -> Any
+  #endif
+  @objc override final public class func canSupportAction(_ actionName: Swift.String) -> Swift.Bool
+  @objc deinit
+}
+@objc @objcMembers final public class WMElementClickConditionNode : WalkMeEditor.WMConditionNode {
+  @objc final public var funcName: Swift.String {
+    get
+  }
+  @objc final public var data: WalkMeEditor.WMElementDescription? {
+    get
+  }
+  @objc final public var feFlags: WalkMeEditor.WMFEFlagsObject? {
+    get
+  }
+  @objc final public var elementId: Swift.String {
+    get
+  }
+  @objc override final public func jsonMap() -> [Swift.AnyHashable : Any]
+  @objc required dynamic public init(serializableObject object: [Swift.AnyHashable : Any], version: CoreFoundation.CGFloat)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc override final public func copy(with zone: ObjectiveC.NSZone? = nil) -> Any
+  #endif
+  @objc override final public class func canSupportAction(_ actionName: Swift.String) -> Swift.Bool
+  @objc deinit
+}
+@objc @objcMembers final public class WMElementConditionNode : WalkMeEditor.WMConditionNode {
+  @objc final public var funcName: Swift.String {
+    get
+  }
+  @objc final public var data: WalkMeEditor.WMElementDescription? {
+    get
+  }
+  @objc final public var feFlags: WalkMeEditor.WMFEFlagsObject? {
+    get
+  }
+  @objc final public var elementId: Swift.String {
+    get
+  }
+  @objc final public var elementText: Swift.String {
+    get
+  }
+  @objc override final public func jsonMap() -> [Swift.AnyHashable : Any]
+  @objc required dynamic public init(serializableObject object: [Swift.AnyHashable : Any], version: CoreFoundation.CGFloat)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc override final public func copy(with zone: ObjectiveC.NSZone? = nil) -> Any
+  #endif
+  @objc override final public class func canSupportAction(_ actionName: Swift.String) -> Swift.Bool
+  @objc deinit
+}
+@objc @objcMembers final public class WMNetworkConditionNode : WalkMeEditor.WMConditionNode {
+  @objc final public var funcName: Swift.String {
+    get
+  }
+  @objc final public var network: Swift.String {
+    get
+  }
+  @objc override final public func jsonMap() -> [Swift.AnyHashable : Any]
+  @objc required dynamic public init(serializableObject object: [Swift.AnyHashable : Any], version: CoreFoundation.CGFloat)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc override final public func copy(with zone: ObjectiveC.NSZone? = nil) -> Any
+  #endif
+  @objc override final public class func canSupportAction(_ actionName: Swift.String) -> Swift.Bool
+  @objc deinit
+}
+@objc @objcMembers final public class WMNumberOfSessionsConditionNode : WalkMeEditor.WMConditionNode {
+  @objc final public var funcName: Swift.String {
+    get
+  }
+  @objc final public var numberOfSessions: Swift.String {
+    get
+  }
+  @objc override final public func jsonMap() -> [Swift.AnyHashable : Any]
+  @objc required dynamic public init(serializableObject object: [Swift.AnyHashable : Any], version: CoreFoundation.CGFloat)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc override final public func copy(with zone: ObjectiveC.NSZone? = nil) -> Any
+  #endif
+  @objc override final public class func canSupportAction(_ actionName: Swift.String) -> Swift.Bool
+  @objc deinit
+}
+@objc @objcMembers final public class WMOSVersionConditionNode : WalkMeEditor.WMConditionNode {
+  @objc final public var funcName: Swift.String {
+    get
+  }
+  @objc final public var osVersion: Swift.String {
+    get
+  }
+  @objc override final public func jsonMap() -> [Swift.AnyHashable : Any]
+  @objc required dynamic public init(serializableObject object: [Swift.AnyHashable : Any], version: CoreFoundation.CGFloat)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc override final public func copy(with zone: ObjectiveC.NSZone? = nil) -> Any
+  #endif
+  @objc override final public class func canSupportAction(_ actionName: Swift.String) -> Swift.Bool
+  @objc deinit
+}
+@objc @objcMembers final public class WMPermissionConditionNode : WalkMeEditor.WMConditionNode {
+  @objc final public var funcName: Swift.String {
+    get
+  }
+  @objc final public var permissionStatus: Swift.String {
+    get
+  }
+  @objc override final public func jsonMap() -> [Swift.AnyHashable : Any]
+  @objc required dynamic public init(serializableObject object: [Swift.AnyHashable : Any], version: CoreFoundation.CGFloat)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc override final public func copy(with zone: ObjectiveC.NSZone? = nil) -> Any
+  #endif
+  @objc override final public class func canSupportAction(_ actionName: Swift.String) -> Swift.Bool
+  @objc deinit
+}
+@objc @objcMembers final public class WMSessionTimeConditionNode : WalkMeEditor.WMConditionNode {
+  @objc final public var funcName: Swift.String {
+    get
+  }
+  @objc final public var sessionTime: Swift.String {
+    get
+  }
+  @objc override final public func jsonMap() -> [Swift.AnyHashable : Any]
+  @objc required dynamic public init(serializableObject object: [Swift.AnyHashable : Any], version: CoreFoundation.CGFloat)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc override final public func copy(with zone: ObjectiveC.NSZone? = nil) -> Any
+  #endif
+  @objc override final public class func canSupportAction(_ actionName: Swift.String) -> Swift.Bool
+  @objc deinit
+}
+@objc @objcMembers final public class WMUserIdConditionNode : WalkMeEditor.WMConditionNode {
+  @objc final public var funcName: Swift.String {
+    get
+  }
+  @objc final public var userId: Swift.String {
+    get
+  }
+  @objc override final public func jsonMap() -> [Swift.AnyHashable : Any]
+  @objc required dynamic public init(serializableObject object: [Swift.AnyHashable : Any], version: CoreFoundation.CGFloat)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc override final public func copy(with zone: ObjectiveC.NSZone? = nil) -> Any
+  #endif
+  @objc override final public class func canSupportAction(_ actionName: Swift.String) -> Swift.Bool
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(WMEventData) @objcMembers final public class WMEventData : ObjectiveC.NSObject {
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(WMEventPlayInitiatorData) @objcMembers final public class WMEventPlayInitiatorData : ObjectiveC.NSObject {
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(WMEventObject) @objcMembers final public class WMEventObject : ObjectiveC.NSObject, Foundation.NSCoding {
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init()
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc required public init?(coder: Foundation.NSCoder)
+  #endif
+  @objc final public func encode(with coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers final public class WMEventSession : ObjectiveC.NSObject {
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(WMEventWalkmeData) @objcMembers final public class WMEventWalkmeData : ObjectiveC.NSObject {
+  @objc public static func setInteractionGuid()
+  @objc public static func resetInteractionGuid()
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public static func currentInteractionGuid() -> Swift.String?
+  #endif
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public enum WMPlayFrequency : Swift.Int {
+  case oncePerSession
+  case once
+  case always
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.Int)
+  #endif
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum WMPlayWaitInterval : Swift.Int {
+  case days
+  case weeks
+  case months
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.Int)
+  #endif
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc @objcMembers public class WMPromotionRepeatObject : ObjectiveC.NSObject {
+  @objc final public let interval: WalkMeEditor.WMPlayWaitInterval
+  @objc final public let value: Swift.Int
+  @objc public init(dictionary: Foundation.NSDictionary)
+  @objc public func hasIntervalPassed(since lastImpressionTime: Foundation.TimeInterval) -> Swift.Bool
+  @objc deinit
+}
+@objc @objcMembers public class WMPromotionSettingsObject : ObjectiveC.NSObject {
+  @objc final public let isEnabled: Swift.Bool
+  @objc final public let isConditionTreeEnabled: Swift.Bool
+  @objc final public let playFrequency: WalkMeEditor.WMPlayFrequency
+  @objc final public let totalPlaysLimit: Swift.Int
+  @objc final public let conditionTree: WalkMeEditor.WMConditionTree?
+  @objc final public let repeatConfig: WalkMeEditor.WMPromotionRepeatObject?
+  @objc public init(dictionary: Foundation.NSDictionary)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public init(settingsDictionary: Foundation.NSDictionary, conditionTreeDictionary: Foundation.NSDictionary?)
+  #endif
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class WMBaseSDKManager : ObjectiveC.NSObject {
+  @objc public var stateMachine: WalkMeEditor.WMStateMachineBase!
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension WalkMeEditor.WMBaseSDKManager : WalkMeEditor.WalkMeSDK {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc dynamic public func start(_ settingsURL: Swift.String, options: WalkMeEditor.WalkMeStartOptions?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc dynamic public func restart(_ options: WalkMeEditor.WalkMeStartOptions?)
+  #endif
+  @objc dynamic public func isRunning() -> Swift.Bool
+  @objc dynamic public func isActive() throws
+  @objc dynamic public func stop()
+  @objc dynamic public func changeLanguage(_ language: Swift.String)
+  @objc dynamic public func setWalkMeData(_ data: Swift.String, forKey key: Swift.String, duration: Foundation.NSNumber)
+  @objc dynamic public func setEndUserId(_ userId: Swift.String)
+  @objc dynamic public func setAnalyticsMode(_ mode: WalkMeEditor.WMAnalyticMode)
+  @objc dynamic public func setLoggingMode(_ mode: WalkMeEditor.WMLoggingMode)
+  @objc dynamic public func setLoggingPath(_ path: Swift.String)
+  @objc dynamic public func setStorageMode(_ storageMode: WalkMeEditor.WMStorageMode)
+  @objc dynamic public func isEditingState() -> Swift.Bool
+  @objc dynamic public func setProxy(_ url: Swift.String)
+  @objc dynamic public func setHttpHeader(_ value: Swift.String, forKey key: Swift.String)
+  @objc dynamic public func setRawHttpRequestCallback(_ requestCallback: @escaping WalkMeEditor.WMHTTPRequestCallback)
+  @objc dynamic public func invokeRawHttpRequest(_ request: Foundation.URLRequest)
+}
+extension WalkMeEditor.WMBaseSDKManager {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc dynamic public func start(withGUID guid: Swift.String, options: WalkMeEditor.WalkMeStartOptions?)
+  #endif
+  @objc dynamic open func makeActiveState(guid: Swift.String) -> WalkMeEditor.WMStateBase
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc dynamic open func applyStartOptions(_ options: WalkMeEditor.WalkMeStartOptions?)
+  #endif
+  @objc dynamic open func applyAdditionalInitialization()
+  @objc dynamic public func setUserAttributeWithKey(_ key: Swift.String, andValue value: Any)
+  @objc dynamic public func setUserAttributes(_ attributes: [Swift.String : Any])
+  @objc dynamic public func setPrivateUserAttributeWithKey(_ key: Swift.String, andValue value: Any)
+  @objc dynamic public func setPrivateUserAttributes(_ attributes: [Swift.String : Any])
+  @objc dynamic public func clearPrivateUserAttributes()
+}
+@objc public protocol WMShoutOutPlayerDelegate : WalkMeEditor.WMPlayerDelegate {
+  @objc func didFinishPlayingShoutOut(_ player: WalkMeEditor.WMShoutOutPlayer, dismissType: WalkMeEditor.WMSODismissType)
+}
+@objc @objcMembers final public class WMShoutOutPlayer : WalkMeEditor.WMPromotionPlayer {
+  @objc final public var shoutOut: WalkMeEditor.WMShoutOutObject {
+    @objc get
+  }
+  @objc final public var so: WalkMeEditor.WMShoutOutPlayingItem {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc weak final public var shoutOutDelegate: (any WalkMeEditor.WMShoutOutPlayerDelegate)? {
+    @objc get
+    @objc set
+  }
+  #endif
+  @objc public init(object so: WalkMeEditor.WMShoutOutPlayingItem)
+  @objc deinit
+  @objc override final public func onPlayerReady()
+  @objc override final public func stop()
+  @objc override final public func promotion() -> WalkMeEditor.WMBasicPromotionObject
+  @objc override final public func eventType() -> WalkMeEditor.WMEventAppType
+}
+extension WalkMeEditor.WMShoutOutPlayer : WalkMeEditor.WMUIActionHandlerInterface {
+  @objc final public func handle(_ action: WalkMeEditor.WMViewActionObject, on view: UIKit.UIView)
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class WMCarouselWidgetView : WalkMeEditor.WMCanvasWidgetView {
+  @_Concurrency.MainActor @preconcurrency @objc override final public func layoutSubviews()
+  @objc deinit
+}
+extension WalkMeEditor.WMCarouselWidgetView : UIKit.UICollectionViewDataSource {
+  @_Concurrency.MainActor @preconcurrency @objc final public func collectionView(_ collectionView: UIKit.UICollectionView, numberOfItemsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc final public func collectionView(_ collectionView: UIKit.UICollectionView, cellForItemAt indexPath: Foundation.IndexPath) -> UIKit.UICollectionViewCell
+}
+extension WalkMeEditor.WMCarouselWidgetView : UIKit.UICollectionViewDelegateFlowLayout {
+  @_Concurrency.MainActor @preconcurrency @objc final public func collectionView(_ collectionView: UIKit.UICollectionView, layout collectionViewLayout: UIKit.UICollectionViewLayout, sizeForItemAt indexPath: Foundation.IndexPath) -> CoreFoundation.CGSize
+}
+extension WalkMeEditor.WMCarouselWidgetView : UIKit.UICollectionViewDelegate {
+  @_Concurrency.MainActor @preconcurrency @objc final public func scrollViewDidEndDecelerating(_ scrollView: UIKit.UIScrollView)
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class WMVisualDesignView : WalkMeEditor.WMAnimatableView {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc override final public var animation: WalkMeEditor.WMViewAnimationObject? {
+    @objc get
+  }
+  #endif
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency final public class WMRootCanvasWidgetView : WalkMeEditor.WMCanvasWidgetView {
+  @_Concurrency.MainActor @preconcurrency @objc override final public func layoutSubviews()
+  @_Concurrency.MainActor @preconcurrency final public func setRootLayout()
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(model: WalkMeEditor.WMWidgetObject?)
+  #endif
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers final public class WMFlexUIGenerator : ObjectiveC.NSObject {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public static func generateFlex(canvas: WalkMeEditor.WMVisualDesignObject, handler: (any WalkMeEditor.WMUIActionHandlerInterface)?) -> WalkMeEditor.WMRootCanvasWidgetView
+  #endif
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension WalkMeEditor.WMImageWidgetObject {
+  public func buildFlexImageView(widget: WalkMeEditor.WMWidgetObject) -> UIKit.UIView
+}
+@objc @_inheritsConvenienceInitializers @objcMembers final public class WMUIGenerator : ObjectiveC.NSObject {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public static func generateCanvas(_ canvas: any WalkMeEditor.WMUIVisualDesignInterface, parentBounds: CoreFoundation.CGRect, uiActionHandler: (any WalkMeEditor.WMUIActionHandlerInterface)?) -> WalkMeEditor.WMCanvasWidgetView?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public static func generateCanvas(_ canvas: any WalkMeEditor.WMUIVisualDesignInterface, parentBounds: CoreFoundation.CGRect, uiActionHandler: (any WalkMeEditor.WMUIActionHandlerInterface)?, into parentView: UIKit.UIView) -> WalkMeEditor.WMCanvasWidgetView?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public static func generateBalloon(for type: WalkMeEditor.WMWidgetObjectType, canvasView: WalkMeEditor.WMCanvasWidgetView, anchorView: UIKit.UIView, model: WalkMeEditor.WMTooltipObject) -> WalkMeEditor.WMBalloonAnchorView?
+  #endif
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public protocol WMFlowPlayerDelgate : WalkMeEditor.WMPlayerDelegate {
+  @objc optional func flowPlayer(_ flowPlayer: WalkMeEditor.WMFlowPlayer, onWTDone flow: WalkMeEditor.WMFlowObject)
+  @objc optional func onMoveToStep(_ stepData: [Swift.AnyHashable : Any])
+  @objc optional func onStepDone(_ stepData: [Swift.AnyHashable : Any])
+  @objc optional func onStepShown(_ stepData: [Swift.AnyHashable : Any])
+  @objc optional func flowPlayerOnWTCancelled(_ flowPlayer: WalkMeEditor.WMFlowPlayer)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc optional func onConnectToFlow(_ flowId: Foundation.NSNumber) -> WalkMeEditor.WMFlowObject?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc optional func onConnectToShoutOut(_ shoutOutId: Foundation.NSNumber) -> WalkMeEditor.WMShoutOutObject?
+  #endif
+  @objc optional func flowPlayer(_ flowPlayer: WalkMeEditor.WMFlowPlayer, willPlayConnectedDeployable flow: WalkMeEditor.WMBasicPromotionObject)
+  @objc optional func flowPlayer(_ flowPlayer: WalkMeEditor.WMFlowPlayer, didConnectToShoutOut shoutOut: WalkMeEditor.WMShoutOutObject)
+}
+@objc @objcMembers final public class WMFlowPlayer : WalkMeEditor.WMPromotionPlayer, WalkMeEditor.WMNodeHandlerDataSource {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc final public var flowDelegate: (any WalkMeEditor.WMFlowPlayerDelgate)? {
+    @objc get
+    @objc set
+  }
+  #endif
+  @objc final public var flow: WalkMeEditor.WMFlowObject
+  @objc final public var nodeHandler: WalkMeEditor.WMNodeHandler?
+  @objc final public var flowStack: WalkMeEditor.WMStack<WalkMeEditor.WMNodeProgressData>
+  @objc final public var wtPathStack: WalkMeEditor.WMStack<WalkMeEditor.WMNodeProgressData>
+  @objc final public var startingNodeId: Foundation.NSNumber
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public init(object flow: WalkMeEditor.WMFlowObject, startingNodeId: Foundation.NSNumber?)
+  #endif
+  @objc override final public func onPlayerReady()
+  @objc final public func playPreviousStep()
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc final public func playNextStep(_ nodeId: Foundation.NSNumber?)
+  #endif
+  @objc override final public func stop()
+  @objc override final public func promotion() -> WalkMeEditor.WMBasicPromotionObject
+  @objc override final public func eventType() -> WalkMeEditor.WMEventAppType
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc final public func flowInfo() -> WalkMeEditor.WMFlowObject?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc final public func flowPlayID() -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc final public func isBackFromConnectedFlowStepItem(_ currentStepItem: WalkMeEditor.WMNodeProgressData?, toConnectedFlowStepItem prevStepItem: WalkMeEditor.WMNodeProgressData) -> Swift.Bool
+  #endif
+  @objc deinit
+}
+extension WalkMeEditor.WMFlowPlayer : WalkMeEditor.WMConnectToFlowHandlerDelegate {
+  @objc final public func stepCancelled()
+  @objc final public func connectFlowId(_ flowId: Foundation.NSNumber, fromNode nodeId: Foundation.NSNumber, nextNodeId: Foundation.NSNumber, orgnNodeId: Foundation.NSNumber)
+  @objc final public func connectShoutOutId(_ shoutOutId: Foundation.NSNumber, orgnNodeId: Foundation.NSNumber)
+}
+extension WalkMeEditor.WMFlowPlayer : WalkMeEditor.WMUIBasedNodeHandlerDelegate {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc final public func didDisplayNode(_ node: WalkMeEditor.WMFlowNodeObject, forElement elementResult: WalkMeEditor.WMFEResult?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc final public func didFinishNode(_ node: WalkMeEditor.WMFlowNodeObject, withAction action: WalkMeEditor.WMViewActionObject?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc final public func checkAndMarkAsDoneForNode(_ node: WalkMeEditor.WMFlowNodeObject, withAction action: WalkMeEditor.WMViewActionObject?)
+  #endif
+}
+@objc @objcMembers final public class WMPromotionManager : ObjectiveC.NSObject {
+  @objc final public var isReady: Swift.Bool
+  public init(storageManager: any WalkMeEditor.WMStorageManagerProtocol, elementStateManager: any WalkMeEditor.WMElementStateManaging, appCapLimit: Swift.Int)
+  @objc deinit
+  @objc final public func setup(withPromotions promotions: WalkMeEditor.WMiOSPromotionsDataObject)
+  @objc final public func clear()
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc final public var isReadyError: (any Swift.Error)? {
+    @objc get
+  }
+  #endif
+}
+@_inheritsConvenienceInitializers @objc final public class WalkMePowerMode : ObjectiveC.NSObject {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public static func start(withGUID guid: Swift.String, options: WalkMeEditor.WalkMeStartOptions?)
+  #endif
+  @objc public static func stop()
+  @objc public static func setUserAttribute(key: Swift.String, value: Any)
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension WalkMeEditor.WMPMEditStepCaptureAction : Swift.Equatable {}
+extension WalkMeEditor.WMPMEditStepCaptureAction : Swift.Hashable {}
+extension WalkMeEditor.WMPMEditStepCaptureAction : Swift.RawRepresentable {}
+extension WalkMeEditor.WMDeployableType : Swift.Equatable {}
+extension WalkMeEditor.WMDeployableType : Swift.Hashable {}
+extension WalkMeEditor.WMDeployableType : Swift.RawRepresentable {}
+extension WalkMeEditor.WMPMCaptureMode : Swift.Equatable {}
+extension WalkMeEditor.WMPMCaptureMode : Swift.Hashable {}
+extension WalkMeEditor.WMPMCaptureMode : Swift.RawRepresentable {}
+extension WalkMeEditor.WMEventSendingMode : Swift.Equatable {}
+extension WalkMeEditor.WMEventSendingMode : Swift.Hashable {}
+extension WalkMeEditor.WMEventSendingMode : Swift.RawRepresentable {}
+extension WalkMeEditor.WMEventWtStepType : Swift.Equatable {}
+extension WalkMeEditor.WMEventWtStepType : Swift.Hashable {}
+extension WalkMeEditor.WMEventWtStepType : Swift.RawRepresentable {}
+extension WalkMeEditor.WMPlayFrequency : Swift.Equatable {}
+extension WalkMeEditor.WMPlayFrequency : Swift.Hashable {}
+extension WalkMeEditor.WMPlayFrequency : Swift.RawRepresentable {}
+extension WalkMeEditor.WMPlayWaitInterval : Swift.Equatable {}
+extension WalkMeEditor.WMPlayWaitInterval : Swift.Hashable {}
+extension WalkMeEditor.WMPlayWaitInterval : Swift.RawRepresentable {}

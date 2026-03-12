@@ -14,16 +14,8 @@ let package = Package(
     ],
     targets: [
         .binaryTarget(
-            name: "WalkMeEditorBinary",
-            path: "WalkMeEditor.xcframework"
-        ),
-        .target(
             name: "WalkMeEditor",
-            dependencies: [
-                "WalkMeEditorBinary",
-                .product(name: "Lottie", package: "lottie-spm")
-            ],
-            path: "Sources/WalkMeEditor"
+            path: "WalkMeEditor.xcframework"
         )
     ]
 )

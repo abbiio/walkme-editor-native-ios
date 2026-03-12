@@ -3,9 +3,6 @@ import PackageDescription
 
 let package = Package(
     name: "WalkMeEditor",
-    platforms: [
-        .iOS(.v14)
-    ],
     products: [
         .library(name: "WalkMeEditor", targets: ["WalkMeEditor"])
     ],

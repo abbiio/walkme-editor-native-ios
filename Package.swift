@@ -14,7 +14,7 @@ let package = Package(
         .binaryTarget(
             name: "WalkMeEditor",
             url: "https://github.com/abbiio/walkme-editor-native-ios/releases/download/1.0.12/WalkMeEditor.xcframework.zip",
-            checksum: "1c3b23a408e0e97e1410bda99be432ba0aea22a6840c3495655fe060c8f0b8eb"
+            checksum: "f23c8f74bcb5aaa6f4876274f1a398058548b8d6083e277f557df727cfaa0072"
         )
     ]
 )
